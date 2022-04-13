@@ -26,3 +26,22 @@ func (u eventUsecase) GetEventListByUserID(userID int) ([]event.Entity, error) {
 
 	return eventList, err
 }
+
+func (u eventUsecase) GetEventByEventID(eventID, userID int) (event.Entity, error) {
+	var e event.Entity
+
+	result := repository.Event.GetEventByEventID(eventID, userID)
+	err := result.Scan(&e.ID, &e.Name, &e.Type, &e.StartTime, &e.RepeatUnit, &e.RepeatInterval, &e.RepeatTime, &e.LastTime, &e.Remark, &e.UserID)
+
+	return e, err
+}
+
+func (u eventUsecase) UpdateEvent(e event.Entity) error {
+	_, err := repository.Event.UpdateEvent(e)
+	return err
+}
+
+func (u eventUsecase) DeleteEventByEventID(eventID, userID int) error {
+	_, err := repository.Event.DeleteEventByEventID(eventID, userID)
+	return err
+}
