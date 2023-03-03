@@ -7,6 +7,13 @@ const (
 	RepeatEvent EventType = "repeat"
 )
 
+type EventCalType string
+
+const (
+	ByStart EventCalType = "by_start"
+	ByLast  EventCalType = "by_last"
+)
+
 type EventRepeatUnit string
 
 const (

@@ -20,7 +20,7 @@ func (u eventUsecase) GetEventListByUserID(userID int) ([]event.Entity, error) {
 	result, err := repository.Event.GetEventListByUserID(userID)
 	for result.Next() {
 		var e event.Entity
-		result.Scan(&e.ID, &e.Name, &e.Type, &e.StartTime, &e.RepeatUnit, &e.RepeatInterval, &e.RepeatTime, &e.LastTime, &e.Remark, &e.UserID)
+		result.Scan(&e.ID, &e.Name, &e.Type, &e.StartTime, &e.RepeatUnit, &e.RepeatInterval, &e.RepeatTime, &e.LastTime, &e.Remark, &e.UserID, &e.CalType)
 		eventList = append(eventList, e)
 	}
 
@@ -31,7 +31,7 @@ func (u eventUsecase) GetEventByEventID(eventID, userID int) (event.Entity, erro
 	var e event.Entity
 
 	result := repository.Event.GetEventByEventID(eventID, userID)
-	err := result.Scan(&e.ID, &e.Name, &e.Type, &e.StartTime, &e.RepeatUnit, &e.RepeatInterval, &e.RepeatTime, &e.LastTime, &e.Remark, &e.UserID)
+	err := result.Scan(&e.ID, &e.Name, &e.Type, &e.StartTime, &e.RepeatUnit, &e.RepeatInterval, &e.RepeatTime, &e.LastTime, &e.Remark, &e.UserID, &e.CalType)
 
 	return e, err
 }

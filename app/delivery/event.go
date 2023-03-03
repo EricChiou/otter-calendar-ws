@@ -32,6 +32,11 @@ func (d eventDelivery) AddEvent(webInput middleware.WebInput) {
 		return
 	}
 
+	if !types.CheckEventCalType(addEventVO.CalType) {
+		response.Send.FormatError(webInput.Ctx, "事件計算類型不正確", nil)
+		return
+	}
+
 	if addEventVO.Type == string(types.RepeatEvent) {
 		if !types.CheckRepeatUnit(addEventVO.RepeatUnit) {
 			response.Send.FormatError(webInput.Ctx, "執行間隔單位不正確", nil)
@@ -50,6 +55,7 @@ func (d eventDelivery) AddEvent(webInput middleware.WebInput) {
 	eventEnt := event.Entity{
 		Name:           addEventVO.Name,
 		Type:           types.EventType(addEventVO.Type),
+		CalType:        types.EventCalType(addEventVO.CalType),
 		StartTime:      addEventVO.StartTime,
 		RepeatUnit:     types.EventRepeatUnit(addEventVO.RepeatUnit),
 		RepeatInterval: addEventVO.RepeatInterval,
@@ -110,6 +116,11 @@ func (d eventDelivery) UpdateEvent(webInput middleware.WebInput) {
 		return
 	}
 
+	if !types.CheckEventCalType(updateEventVO.CalType) {
+		response.Send.FormatError(webInput.Ctx, "事件計算類型不正確", nil)
+		return
+	}
+
 	if updateEventVO.Type == string(types.RepeatEvent) {
 		if !types.CheckRepeatUnit(updateEventVO.RepeatUnit) {
 			response.Send.FormatError(webInput.Ctx, "執行間隔單位不正確", nil)
@@ -133,6 +144,7 @@ func (d eventDelivery) UpdateEvent(webInput middleware.WebInput) {
 		ID:             updateEventVO.ID,
 		Name:           updateEventVO.Name,
 		Type:           types.EventType(updateEventVO.Type),
+		CalType:        types.EventCalType(updateEventVO.CalType),
 		StartTime:      updateEventVO.StartTime,
 		RepeatUnit:     types.EventRepeatUnit(updateEventVO.RepeatUnit),
 		RepeatInterval: updateEventVO.RepeatInterval,

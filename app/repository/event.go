@@ -18,8 +18,8 @@ func (r eventRepository) AddEvent(e event.Entity) (sql.Result, error) {
 	err := jobqueue.Event.NewEventQueueJob(func() interface{} {
 		sql := gooq.SQL{}
 		sql.
-			Insert(event.Table, event.Name, event.Type, event.StartTime, event.RepeatUnit, event.RepeatInterval, event.RepeatTime, event.LastTime, event.Remark, event.UserID).
-			Values(e.Name, string(e.Type), e.StartTime, string(e.RepeatUnit), e.RepeatInterval, e.RepeatTime, e.LastTime, e.Remark, e.UserID)
+			Insert(event.Table, event.Name, event.Type, event.StartTime, event.RepeatUnit, event.RepeatInterval, event.RepeatTime, event.LastTime, event.Remark, event.UserID, event.CalType).
+			Values(e.Name, string(e.Type), e.StartTime, string(e.RepeatUnit), e.RepeatInterval, e.RepeatTime, e.LastTime, e.Remark, e.UserID, string(e.CalType))
 
 		var err error
 		result, err = db.Exec(sql.GetSQL())
@@ -69,6 +69,7 @@ func (r eventRepository) UpdateEvent(e event.Entity) (sql.Result, error) {
 			gooq.Column(event.RepeatTime).Eq(e.RepeatTime),
 			gooq.Column(event.LastTime).Eq(e.LastTime),
 			gooq.Column(event.Remark).Eq(e.Remark),
+			gooq.Column(event.CalType).Eq(e.CalType),
 		}
 		sql.
 			Update(event.Table).

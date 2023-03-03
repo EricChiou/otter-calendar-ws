@@ -4,6 +4,7 @@ package vo
 type AddEventVO struct {
 	Name           string `json:"name" req:"true"`
 	Type           string `json:"type" req:"true"`
+	CalType        string `json:"calType" req:"true"`
 	StartTime      int    `json:"startTime" req:"true"`
 	RepeatUnit     string `json:"repeatUnit"`
 	RepeatInterval int    `json:"repeatInterval"`
@@ -15,6 +16,7 @@ type UpdateEventVO struct {
 	ID             int    `json:"id" req:"true"`
 	Name           string `json:"name" req:"true"`
 	Type           string `json:"type" req:"true"`
+	CalType        string `json:"calType" req:"true"`
 	StartTime      int    `json:"startTime" req:"true"`
 	RepeatUnit     string `json:"repeatUnit"`
 	RepeatInterval int    `json:"repeatInterval"`

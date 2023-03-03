@@ -8,6 +8,14 @@ func CheckEventType(unit string) bool {
 	return false
 }
 
+func CheckEventCalType(unit string) bool {
+	switch unit {
+	case string(ByStart), string(ByLast):
+		return true
+	}
+	return false
+}
+
 func CheckRepeatUnit(unit string) bool {
 	switch unit {
 	case string(Day), string(Week), string(Month), string(Year):

@@ -11,6 +11,7 @@ const (
 	ID             string = "id"
 	Name           string = "name"
 	Type           string = "type"
+	CalType        string = "cal_type"
 	StartTime      string = "start_time"
 	RepeatUnit     string = "repeat_unit"
 	RepeatInterval string = "repeat_interval"
@@ -24,6 +25,7 @@ type Entity struct {
 	ID             int                   `json:"id,omitempty"`
 	Name           string                `json:"name,omitempty"`
 	Type           types.EventType       `json:"type,omitempty"`
+	CalType        types.EventCalType    `json:"calType,omitempty"`
 	StartTime      int                   `json:"startTime,omitempty"`
 	RepeatUnit     types.EventRepeatUnit `json:"repeatUnit,omitempty"`
 	RepeatInterval int                   `json:"repeatInterval,omitempty"`
