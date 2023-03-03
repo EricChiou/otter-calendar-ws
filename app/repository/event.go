@@ -69,7 +69,7 @@ func (r eventRepository) UpdateEvent(e event.Entity) (sql.Result, error) {
 			gooq.Column(event.RepeatTime).Eq(e.RepeatTime),
 			gooq.Column(event.LastTime).Eq(e.LastTime),
 			gooq.Column(event.Remark).Eq(e.Remark),
-			gooq.Column(event.CalType).Eq(e.CalType),
+			gooq.Column(event.CalType).Eq(string(e.CalType)),
 		}
 		sql.
 			Update(event.Table).
